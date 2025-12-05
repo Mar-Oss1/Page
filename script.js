@@ -11,16 +11,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Botón "Sí" → mostrar resultado y activar sonido en el segundo video
     yesBtn.addEventListener("click", () => {
+        // Ocultar la pregunta y mostrar el resultado
         questionContainer.classList.add('hidden');
         resultContainer.classList.remove('hidden');
 
-        resultVideo.muted = false;   // activar sonido
-        resultVideo.play();          // reproducir
+        // Detener el primer video y silenciarlo
+        questionVideo.pause();
+        questionVideo.muted = true;
+
+        // Activar sonido en el segundo video
+        resultVideo.muted = false;
+        resultVideo.play();
     });
 
     // Botón "No" → mover el botón y (si quieres) reproducir el video inicial
     noBtn.addEventListener("click", () => {
-        questionVideo.muted = false; // si quieres que suene el del inicio
+        questionVideo.muted = false; // activa sonido en el inicial
         questionVideo.play();
 
         const containerRect = btnContainer.getBoundingClientRect();
