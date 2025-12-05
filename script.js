@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Botón "Sí" → mostrar resultado y activar sonido en el segundo video
     yesBtn.addEventListener("click", () => {
+    // Ocultar la pregunta y mostrar el resultado
     questionContainer.classList.add('hidden');
     resultContainer.classList.remove('hidden');
 
@@ -18,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     questionVideo.pause();          // lo detiene
     questionVideo.currentTime = 0;  // lo reinicia al inicio
     questionVideo.muted = true;     // lo silencia
+    questionVideo.removeAttribute("src"); // desconecta la fuente
+    questionVideo.load();           // fuerza al navegador a recargar (queda vacío)
 
     // Activar sonido en el segundo video
     resultVideo.muted = false;
@@ -43,4 +46,5 @@ document.addEventListener('DOMContentLoaded', () => {
         noBtn.style.top = `${newY}px`;
     });
 });
+
 
