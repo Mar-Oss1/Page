@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Obtenemos el contenedor de los botones para limitar el movimiento del botón 'No'
     const btnContainer = document.querySelector('.button-container');
 
-    const video = document.querySelector(".gif-src");
+    const video = document.querySelector(".result-gif-src");
     document.querySelector(".yes-btn").addEventListener("click", () => {
         video.muted = false;
         video.play();
@@ -44,3 +44,4 @@ document.addEventListener('DOMContentLoaded', () => {
         resultContainer.classList.remove('hidden');
     });
 });
+
