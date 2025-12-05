@@ -4,21 +4,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const yesBtn = document.querySelector('.yes-btn');
     const questionContainer = document.querySelector('.question-container');
     const resultContainer = document.querySelector('.result-container');
-    
+
     // Obtenemos el contenedor de los botones para limitar el movimiento del botón 'No'
     const btnContainer = document.querySelector('.button-container');
+
+    const video = document.querySelector(".gif-src");
+    document.querySelector(".yes-btn").addEventListener("click", () => {
+        video.muted = false;
+        video.play();
+    });
 
     // 2. Lógica para el botón 'No' (Movimiento evasivo al pasar el mouse)
     noBtn.addEventListener('mouseover', () => {
         // Obtenemos las dimensiones del contenedor de los botones
         const containerRect = btnContainer.getBoundingClientRect();
         const buttonRect = noBtn.getBoundingClientRect();
-        
+
         // Calculamos un rango seguro para el movimiento (dentro del contenedor)
         // Restamos el ancho/alto del botón para que no se salga
         const maxX = containerRect.width - buttonRect.width;
         const maxY = containerRect.height - buttonRect.height;
-        
+
         // Generamos nuevas coordenadas aleatorias
         // Math.random() genera un número entre 0 y 1. Lo multiplicamos por el rango máximo.
         const newX = Math.random() * maxX;
