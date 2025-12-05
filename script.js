@@ -11,18 +11,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Botón "Sí" → mostrar resultado y activar sonido en el segundo video
     yesBtn.addEventListener("click", () => {
-        // Ocultar la pregunta y mostrar el resultado
-        questionContainer.classList.add('hidden');
-        resultContainer.classList.remove('hidden');
+    questionContainer.classList.add('hidden');
+    resultContainer.classList.remove('hidden');
 
-        // Detener el primer video y silenciarlo
-        questionVideo.pause();
-        questionVideo.muted = true;
+    // Apagar totalmente el primer video
+    questionVideo.pause();          // lo detiene
+    questionVideo.currentTime = 0;  // lo reinicia al inicio
+    questionVideo.muted = true;     // lo silencia
 
-        // Activar sonido en el segundo video
-        resultVideo.muted = false;
-        resultVideo.play();
-    });
+    // Activar sonido en el segundo video
+    resultVideo.muted = false;
+    resultVideo.play();
+});
 
     // Botón "No" → mover el botón y (si quieres) reproducir el video inicial
     noBtn.addEventListener("click", () => {
@@ -43,3 +43,4 @@ document.addEventListener('DOMContentLoaded', () => {
         noBtn.style.top = `${newY}px`;
     });
 });
+
