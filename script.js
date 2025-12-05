@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
         video.muted = false;
         video.play();
     });
+    const video = document.querySelector(".gif-src");
+    document.querySelector(".no-btn").addEventListener("click", () => {
+        video.muted = false;
+        video.play();
+    });
 
     // 2. Lógica para el botón 'No' (Movimiento evasivo al pasar el mouse)
     noBtn.addEventListener('mouseover', () => {
@@ -44,4 +49,5 @@ document.addEventListener('DOMContentLoaded', () => {
         resultContainer.classList.remove('hidden');
     });
 });
+
 
