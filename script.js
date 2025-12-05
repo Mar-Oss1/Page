@@ -11,23 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Botón "Sí" → mostrar resultado y activar sonido en el segundo video
     yesBtn.addEventListener("click", () => {
-    // Ocultar la pregunta y mostrar el resultado
-    questionContainer.classList.add('hidden');
-    resultContainer.classList.remove('hidden');
+        // Ocultar la pregunta y mostrar el resultado
+        questionContainer.classList.add('hidden');
+        resultContainer.classList.remove('hidden');
 
-    // Apagar totalmente el primer video
-    questionVideo.pause();          // lo detiene
-    questionVideo.currentTime = 0;  // lo reinicia al inicio
-    questionVideo.muted = true;     // lo silencia
-    questionVideo.removeAttribute("src"); // desconecta la fuente
-    questionVideo.load();           // fuerza al navegador a recargar (queda vacío)
+        // Apagar totalmente el primer video
+        questionVideo.pause();                // lo detiene
+        questionVideo.currentTime = 0;        // lo reinicia al inicio
+        questionVideo.muted = true;           // lo silencia
+        questionVideo.removeAttribute("src"); // desconecta la fuente
+        questionVideo.load();                 // fuerza al navegador a recargar (queda vacío)
 
-    // Activar sonido en el segundo video
-    resultVideo.muted = false;
-    resultVideo.play();
-});
+        // Activar sonido en el segundo video
+        resultVideo.muted = false;
+        resultVideo.play();
+    });
 
-    // Botón "No" → mover el botón y (si quieres) reproducir el video inicial
+    // Botón "No" → mover el botón y reproducir el video inicial con sonido
     noBtn.addEventListener("click", () => {
         questionVideo.muted = false; // activa sonido en el inicial
         questionVideo.play();
@@ -46,5 +46,3 @@ document.addEventListener('DOMContentLoaded', () => {
         noBtn.style.top = `${newY}px`;
     });
 });
-
-
