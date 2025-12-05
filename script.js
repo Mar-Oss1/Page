@@ -1,43 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Elementos que vamos a manipular
     const noBtn = document.querySelector('.no-btn');
     const yesBtn = document.querySelector('.yes-btn');
     const questionContainer = document.querySelector('.question-container');
     const resultContainer = document.querySelector('.result-container');
     const btnContainer = document.querySelector('.button-container');
 
-    // Videos
-    const resultVideo = document.querySelector(".result-gif-src");
-    const questionVideo = document.querySelector(".gif-src");
+    // Videos separados
+    const questionVideo = document.querySelector(".gif-src");       // el del inicio
+    const resultVideo = document.querySelector(".result-gif-src");  // el del resultado
 
-    // 2. Lógica para el botón 'Sí'
+    // Botón "Sí" → mostrar resultado y activar sonido en el segundo video
     yesBtn.addEventListener("click", () => {
-        resultVideo.muted = false;
-        resultVideo.play();
-
-        // Ocultar la pregunta y mostrar el resultado
         questionContainer.classList.add('hidden');
         resultContainer.classList.remove('hidden');
+
+        resultVideo.muted = false;   // activar sonido
+        resultVideo.play();          // reproducir
     });
 
-    // 3. Lógica para el botón 'No'
+    // Botón "No" → mover el botón y (si quieres) reproducir el video inicial
     noBtn.addEventListener("click", () => {
-        questionVideo.muted = false;
+        questionVideo.muted = false; // si quieres que suene el del inicio
         questionVideo.play();
 
-        // Obtenemos las dimensiones del contenedor de los botones
         const containerRect = btnContainer.getBoundingClientRect();
         const buttonRect = noBtn.getBoundingClientRect();
 
-        // Calculamos un rango seguro para el movimiento
         const maxX = containerRect.width - buttonRect.width;
         const maxY = containerRect.height - buttonRect.height;
 
-        // Generamos nuevas coordenadas aleatorias
         const newX = Math.random() * maxX;
         const newY = Math.random() * maxY;
 
-        // Aplicamos la nueva posición
         noBtn.style.position = 'absolute';
         noBtn.style.left = `${newX}px`;
         noBtn.style.top = `${newY}px`;
