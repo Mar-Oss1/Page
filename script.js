@@ -4,50 +4,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const yesBtn = document.querySelector('.yes-btn');
     const questionContainer = document.querySelector('.question-container');
     const resultContainer = document.querySelector('.result-container');
-
-    // Obtenemos el contenedor de los botones para limitar el movimiento del botón 'No'
     const btnContainer = document.querySelector('.button-container');
 
-    const video = document.querySelector(".result-gif-src");
-    document.querySelector(".yes-btn").addEventListener("click", () => {
-        video.muted = false;
-        video.play();
-    });
-    const video = document.querySelector(".gif-src");
-    document.querySelector(".no-btn").addEventListener("click", () => {
-        video.muted = false;
-        video.play();
+    // Videos
+    const resultVideo = document.querySelector(".result-gif-src");
+    const questionVideo = document.querySelector(".gif-src");
+
+    // 2. Lógica para el botón 'Sí'
+    yesBtn.addEventListener("click", () => {
+        resultVideo.muted = false;
+        resultVideo.play();
+
+        // Ocultar la pregunta y mostrar el resultado
+        questionContainer.classList.add('hidden');
+        resultContainer.classList.remove('hidden');
     });
 
-    // 2. Lógica para el botón 'No' (Movimiento evasivo al pasar el mouse)
-    noBtn.addEventListener('mouseover', () => {
+    // 3. Lógica para el botón 'No'
+    noBtn.addEventListener("click", () => {
+        questionVideo.muted = false;
+        questionVideo.play();
+
         // Obtenemos las dimensiones del contenedor de los botones
         const containerRect = btnContainer.getBoundingClientRect();
         const buttonRect = noBtn.getBoundingClientRect();
 
-        // Calculamos un rango seguro para el movimiento (dentro del contenedor)
-        // Restamos el ancho/alto del botón para que no se salga
+        // Calculamos un rango seguro para el movimiento
         const maxX = containerRect.width - buttonRect.width;
         const maxY = containerRect.height - buttonRect.height;
 
         // Generamos nuevas coordenadas aleatorias
-        // Math.random() genera un número entre 0 y 1. Lo multiplicamos por el rango máximo.
         const newX = Math.random() * maxX;
         const newY = Math.random() * maxY;
 
-        // Aplicamos la nueva posición usando la propiedad transform para que sea fluida
-        noBtn.style.position = 'absolute'; // Necesario para que el movimiento funcione
+        // Aplicamos la nueva posición
+        noBtn.style.position = 'absolute';
         noBtn.style.left = `${newX}px`;
         noBtn.style.top = `${newY}px`;
     });
-
-    // 3. Lógica para el botón 'Sí' (Mostrar resultado)
-    yesBtn.addEventListener('click', () => {
-        // Ocultar la pregunta
-        questionContainer.classList.add('hidden');
-        // Mostrar el resultado
-        resultContainer.classList.remove('hidden');
-    });
 });
-
-
